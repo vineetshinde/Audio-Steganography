@@ -27,9 +27,9 @@ def steg(song_path,message):
     # Get the modified bytes
     frame_modified = bytes(frame_bytes)
 
-    
+    new_song_path = 'embedded-' + song_path
     # Write bytes to a new wave audio file
-    fd = wave.open('song_embedded.wav', 'wb')
+    fd = wave.open(new_song_path, 'wb')
     fd.setparams(song.getparams())
     fd.writeframes(frame_modified)
     
@@ -39,8 +39,8 @@ def steg(song_path,message):
     return "success"
 
 @eel.expose
-def recover():
-    song = wave.open("song_embedded.wav", mode='rb')
+def recover(filename):
+    song = wave.open(filename, mode='rb')
     # Convert audio to byte array
     frame_bytes = bytearray(list(song.readframes(song.getnframes())))
 
