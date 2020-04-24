@@ -42,7 +42,7 @@
     <h1 id='heading'>Audio Steganography <img src="napster-brands.svg" alt="audio_img" id="audio_img"></h1>
     
     <div id = "mainDiv">
-        <input class="input is-small" id = "song_path" type="text" placeholder="Enter the song path"><br>
+        <input class="input is-small" id = "song_path" type="file"><br>
         <input class="input is-small" id = "message" type="text" placeholder="Enter the secret message "><br>
         
         <button class="button is-link" onclick=perform_steg()>Embed</button>
@@ -56,7 +56,7 @@
 </body>
 <script>
     function perform_steg(){
-        var song_path = document.getElementById('song_path').value;
+        var song_path = document.getElementById("song_path").files[0].name; 
         var message = document.getElementById('message').value;
 
         eel.steg(song_path,message)(function(ret){alert('Song embedded successfully')});
